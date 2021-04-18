@@ -12,7 +12,9 @@ var app = new Vue({
   methods: {
     connectToWebsocket() {
       this.ws = new WebSocket( this.serverUrl );
-      this.ws.addEventListener('open', (event) => { this.onWebsocketOpen(event) });
+      this.ws.addEventListener('open', (event) => {
+        console.log("Connected")
+        this.onWebsocketOpen(event) });
       this.ws.addEventListener('message', (event) => { this.handleNewMessage(event) });
     },
     onWebsocketOpen() {
