@@ -29,12 +29,21 @@
     <div id="app">
       <div class="container-fluid h-100">
         <div class="row justify-content-center h-100">
+          <div class="card-header msg_head">
+            <label for="username">Username:</label>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              class="form-control"
+              autocomplete="off"
+            />
+            <div class="d-flex bd-highlight justify-content-center">Who's Online</div>
+          </div>
           <div class="col-md-8 col-xl-6 chat">
             <div class="card">
               <div class="card-header msg_head">
-                <div class="d-flex bd-highlight justify-content-center">
-                  Chat
-                </div>
+                <div class="d-flex bd-highlight justify-content-center">Chat</div>
               </div>
               <div class="card-body msg_card_body">
                 <div
@@ -43,7 +52,7 @@
                   class="d-flex justify-content-start mb-4"
                 >
                   <div class="msg_cotainer">
-                    {{message.message}}
+                     {{message.message}}
                     <span class="msg_time"></span>
                   </div>
                 </div>
@@ -56,27 +65,18 @@
                     class="form-control type_msg"
                     placeholder="Type your message..."
                     @keyup.enter.exact="sendMessage"
-                  ></textarea>
+                  >
+                  </textarea>
                   <div class="input-group-append">
-                    <span class="input-group-text send_btn" @click="sendMessage"
-                      >></span
-                    >
+                    <span class="input-group-text send_btn" @click="sendMessage">></span>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="card">
-              <div class="card-header msg_head">
-                <div class="d-flex bd-highlight justify-content-center">
-                  Who's Online
-                </div>
-              </div>
             </div>
           </div>
-
         </div>
       </div>
-
     </div>
   </body>
 
