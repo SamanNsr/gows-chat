@@ -14,6 +14,14 @@
       href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css"
     />
     <link type="text/css" rel="stylesheet" href="static/style.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/notie/4.3.1/notie.min.css"
+      integrity="sha512-UrjLcAek5jbj1vwGbXkviPHtgSNVNQCedX7cBIMDdSI2iZtUcZcoTh2Sqc8R9mVcijOjFUi1IlxhfrE1uWaIog=="
+      crossorigin="anonymous"
+    />
+
     <!-- Load polyfills to support older browsers -->
     <script
       src="//polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver"
@@ -23,6 +31,12 @@
     <!-- Load Vue followed by BootstrapVue -->
     <script src="https://unpkg.com/vue"></script>
     <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/notie/4.3.1/notie.min.js"
+      integrity="sha512-NHRCwRf2LnVSlLDejCA9oS3fG3/FLSQIPCjAWl3M7tVi5wszwr6FxkjotWnQDXLE+aLKcxRrzFDNEgXj9nvkPw=="
+      crossorigin="anonymous"
+    ></script>
   </head>
 
   <body>
@@ -30,20 +44,37 @@
       <div class="container-fluid h-100">
         <div class="row justify-content-center h-100">
           <div class="card-header msg_head">
-            <label for="username">Username:</label>
-            <input
-              type="text"
-              name="username"
-              id="username"
-              class="form-control"
-              autocomplete="off"
-            />
-            <div class="d-flex bd-highlight justify-content-center">Who's Online</div>
+            <label>Username:</label>
+            <div class="input-group">
+              <input
+                v-model="username"
+                type="text"
+                name=""
+                class="form-control"
+                autocomplete="off"
+                @keyup.enter.exact="userInput"
+              />
+              <div class="input-group-append">
+                <span class="input-group-text send_btn" @click="userInput">></span>
+              </div>
+            </div>
+            <div class="d-flex bd-highlight justify-content-center">Who's Online:</div>
+            <div
+              v-for="(user, key) in ul"
+              :key="key"
+              class="d-flex bd-highlight justify-content-center"
+            >
+              <li>{{user}}</li>
+            </div>
+            <div class="col-md-8 col-xl-6 chat"></div>
           </div>
           <div class="col-md-8 col-xl-6 chat">
             <div class="card">
               <div class="card-header msg_head">
                 <div class="d-flex bd-highlight justify-content-center">Chat</div>
+                <div v-html="statusDiv" class="d-flex bd-highlight justify-content-center">
+                  {{statusDiv}}
+                </div>
               </div>
               <div class="card-body msg_card_body">
                 <div
@@ -51,8 +82,8 @@
                   :key="key"
                   class="d-flex justify-content-start mb-4"
                 >
-                  <div class="msg_cotainer">
-                     {{message.message}}
+                  <div v-html="message" class="msg_cotainer">
+                    {{message}}
                     <span class="msg_time"></span>
                   </div>
                 </div>
@@ -73,12 +104,12 @@
                 </div>
               </div>
             </div>
-            </div>
           </div>
         </div>
       </div>
     </div>
   </body>
 
+  <script src="static/reconnecting-websocket.min.js"></script>
   <script src="static/app.js"></script>
 </html>
