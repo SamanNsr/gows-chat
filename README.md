@@ -1,4 +1,4 @@
-# gows-chat
+# GOWS-CHAT
 golang realtime chat application
 
 # DEMO
