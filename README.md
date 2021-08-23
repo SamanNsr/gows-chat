@@ -1,5 +1,5 @@
 # gows-chat
 golang realtime chat application
 
-#DEOM
+# DEMO
 https://gows-chat.herokuapp.com/
